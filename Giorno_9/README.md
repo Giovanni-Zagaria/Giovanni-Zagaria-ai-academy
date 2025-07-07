@@ -20,3 +20,10 @@ DEFAULT_FOLDER_PATH=./data
 ```
 
 `PROJECT_ENDPOINT` è obbligatoria per connettersi ad Azure AI Project, mentre `DEFAULT_FOLDER_PATH` imposta la cartella predefinita da cui caricare i documenti.
+
+## Controllo di fairness
+La pipeline include un passaggio aggiuntivo di verifica delle risposte
+tramite la classe `FairnessEvaluator`. Dopo la generazione da parte del
+modello GPT, il testo viene analizzato per individuare possibili bias o
+stereotipi. In caso di esito negativo viene mostrato un avviso prima del
+testo generato.

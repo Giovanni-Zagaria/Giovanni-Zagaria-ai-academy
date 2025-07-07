@@ -5,6 +5,7 @@ from .loader import TextFileLoader
 from .embedding import AdaEmbeddingModel, LangchainAdaWrapper
 from .anonymizer import TextAnonymizer
 from .chat_model import ChatCompletionModel
+from .fairness_evaluator import FairnessEvaluator
 
 class RAGPipeline:
     def __init__(self, folder_path: str) -> None:
@@ -17,6 +18,7 @@ class RAGPipeline:
         self.embedding_wrapper = LangchainAdaWrapper(ada_model)
         self.vectorstore = None
         self.chat_model = ChatCompletionModel()
+        self.fairness_evaluator = FairnessEvaluator()
 
         self._build_vectorstore()
 
@@ -60,5 +62,14 @@ class RAGPipeline:
         for doc in docs_simili:
             testo_anonimizzato = self.anonymizer.mask_text(doc.page_content)
             risposta = self.chat_model.ask_about_document(testo_anonimizzato, query)
-            risposte += f"**{doc.metadata['file_name']}**\n⚠️ Il contenuto è stato anonimizzato.\n{risposta}\n\n"
+            is_fair, feedback = self.fairness_evaluator.evaluate(risposta)
+            if not is_fair:
+                avviso = f"**Avviso bias**: {feedback}\n"
+            else:
+                avviso = ""
+            risposte += (
+                f"**{doc.metadata['file_name']}**\n"
+                f"⚠️ Il contenuto è stato anonimizzato.\n"
+                f"{avviso}{risposta}\n\n"
+            )
         return risposte
