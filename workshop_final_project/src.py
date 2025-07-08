@@ -157,18 +157,18 @@ TEMPLATE_FIELDS = [
 ]
 
 TEMPLATE_QUESTIONS = {
-    "Ente erogatore": "Indica il nome esatto dell’ente erogatore di questo bando. Se non presente, lascia vuoto.",
-    "Titolo dell'avviso": "Qual è il titolo ufficiale dell’avviso di questo bando? Se non presente, lascia vuoto.",
-    "Descrizione aggiuntiva": "Fornisci una breve descrizione aggiuntiva (2-3 frasi) del bando, se disponibile.",
-    "Beneficiari": "Elenca i beneficiari previsti da questo bando. Se non sono indicati chiaramente, lascia vuoto.",
-    "Apertura": "Qual è la data di apertura del bando (formato GG/MM/AAAA)? Se non presente, lascia vuoto.",
-    "Chiusura": "Qual è la data di chiusura del bando (formato GG/MM/AAAA)? Se non presente, lascia vuoto.",
-    "Dotazione finanziaria": "Qual è la dotazione finanziaria totale del bando? Se non presente, lascia vuoto.",
-    "Contributo": "Qual è il contributo previsto per i beneficiari? Se non presente, lascia vuoto.",
-    "Note": "Aggiungi eventuali note rilevanti (massimo 2 frasi). Se non ci sono, lascia vuoto.",
-    "Link": "Indica il link ufficiale a questo bando se presente. Altrimenti lascia vuoto.",
-    "Key Words": "Scrivi le parole chiave rilevanti per questo bando, separate da virgola.",
-    "Aperto (si/no)": "Il bando è ancora aperto? Rispondi solo 'si' o 'no'. Se la data di chiusura è già passata, rispondi 'no'. Se non è possibile determinare, lascia vuoto."
+    "Ente erogatore": "Indica il nome esatto dell’ente erogatore di questo bando. Se non presente, scrivi 'Da compilare'.",
+    "Titolo dell'avviso": "Qual è il titolo ufficiale dell’avviso di questo bando? Se non presente, scrivi 'Da compilare'.",
+    "Descrizione aggiuntiva": "Fornisci una breve descrizione aggiuntiva (2-3 frasi) del bando, se disponibile, altrimenti scrivi 'Da compilare'.",
+    "Beneficiari": "Elenca i beneficiari previsti da questo bando. Se non sono indicati chiaramente, scrivi 'Da compilare'.",
+    "Apertura": "Qual è la data di apertura del bando (formato GG/MM/AAAA)? Se non presente, scrivi 'Da compilare'.",
+    "Chiusura": "Qual è la data di chiusura del bando (formato GG/MM/AAAA)? Se non presente, scrivi 'Da compilare'.",
+    "Dotazione finanziaria": "Qual è la dotazione finanziaria totale del bando? Se non presente, scrivi 'Da compilare'.",
+    "Contributo": "Qual è il contributo previsto per i beneficiari? Se non presente, scrivi 'Da compilare'.",
+    "Note": "Aggiungi eventuali note rilevanti (massimo 2 frasi). Se non ci sono, scrivi 'Da compilare'.",
+    "Link": "Indica il link ufficiale a questo bando se presente. Altrimenti scrivi 'Da compilare'.",
+    "Key Words": "Scrivi le parole chiave rilevanti per questo bando, separate da virgola, o scrivi 'Da compilare' se non presenti.",
+    "Aperto (si/no)": "Il bando è ancora aperto? Rispondi solo 'si' o 'no'. Se la data di chiusura è già passata, rispondi 'no'. Se non è possibile determinare, scrivi 'Da compilare'."
 }
 
 
@@ -244,21 +244,21 @@ def extract_fields_from_doc(chat_model, page_content):
     - Aperto (si/no)
 
     Restituisci solo le risposte in formato JSON (senza alcun testo extra), con le chiavi corrispondenti.
-    Se non hai informazioni su un campo, lascia la stringa vuota ("").
+    Se non hai informazioni su un campo, scrivi "Da compilare".
     Esempio di output:
     {
-    "Ente erogatore": "",
-    "Titolo dell'avviso": "",
-    "Descrizione aggiuntiva": "",
-    "Beneficiari": "",
-    "Apertura": "",
-    "Chiusura": "",
-    "Dotazione finanziaria": "",
-    "Contributo": "",
-    "Note": "",
-    "Link": "",
-    "Key Words": "",
-    "Aperto (si/no)": ""
+    "Ente erogatore": "Da compilare",
+    "Titolo dell'avviso": "Da compilare",
+    "Descrizione aggiuntiva": "Da compilare",
+    "Beneficiari": "Da compilare",
+    "Apertura": "Da compilare",
+    "Chiusura": "Da compilare",
+    "Dotazione finanziaria": "Da compilare",
+    "Contributo": "Da compilare",
+    "Note": "Da compilare",
+    "Link": "Da compilare",
+    "Key Words": "Da compilare",
+    "Aperto (si/no)": "Da compilare"
     }
 
     Bando:
